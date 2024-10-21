@@ -6,10 +6,121 @@
     <title>Diseño de la Base de Datos del Subsistema de Inventario  </title>
     <ul>
         <li><a href="./../index.html">[Principal]</a></li>
+        
     </ul>
+    <ul>
+    <li><a href="./Subsistemas/ventas.html">Ventas</a></li>
+</ul>
+
 </head>
 <body>
     <h1>Diseño de la Base de Datos del Subsistema de Inventario </h1>
-    <img src="imagenes/db" alt="Imagen Pequeña" class="image-small">
+    <img src="imagenes/db.png" alt="Imagen Pequeña" class="image-small">
+
+    <h2>Principales Entidades</h2>
+<ul>
+  <li>
+    <strong>Usuarios:</strong> Almacena la información de los usuarios del sistema, como su nombre, correo electrónico, contraseña y rol. Esto permite la autenticación y autorización de los usuarios.
+  </li>
+  <li>
+    <strong>Puercos:</strong> Contiene información sobre los animales, como su raza, edad, peso y estado.
+  </li>
+  <li>
+    <strong>HistorialMedico:</strong> Registra el historial médico de los animales, como fechas y descripciones de atenciones.
+  </li>
+  <li>
+    <strong>Citas:</strong> Almacena información sobre las citas programadas, como el usuario que la solicitó, el animal involucrado, la fecha y lugar de la cita.
+  </li>
+</ul>
+
+<h2>Relaciones entre Entidades</h2>
+<ul>
+  <li>
+    <strong>Usuarios y Citas:</strong> Los usuarios pueden agendar citas para los animales.
+  </li>
+  <li>
+    <strong>HistorialMedico y Puercos:</strong> El historial médico está asociado a un animal específico.
+  </li>
+  <li>
+    <strong>Citas y Puercos:</strong> Las citas están relacionadas con los animales atendidos.
+  </li>
+</ul>
+
+<p>Esta estructura permite el rastreo de las transacciones, la asignación de responsabilidades a los usuarios y el mantenimiento de un registro histórico de los animales y sus atenciones médicas. En conjunto, esta arquitectura de base de datos soporta de manera eficiente las funcionalidades requeridas por el subsistema.</p>
+
+  <div class="container">
+    <h1>Normalización de la Base de Datos</h1>
+    <p>La base de datos ha sido diseñada siguiendo las primeras tres formas normales (1NF, 2NF, 3NF) para garantizar la organización y consistencia de los datos:</p>
+
+    <h2>1NF (Primera Forma Normal)</h2>
+    <p>Cada tabla tiene una clave primaria única y todas las entradas son atómicas, lo que significa que cada campo contiene un solo valor.</p>
+
+    <h2>2NF (Segunda Forma Normal)</h2>
+    <p>Se ha eliminado la dependencia parcial de los atributos, asegurando que todos los atributos dependen completamente de la clave primaria.</p>
+
+    <h2>3NF (Tercera Forma Normal)</h2>
+    <p>No hay dependencias transitivas; todos los atributos son dependientes directamente de la clave primaria.</p>
+
+    <h1>Código SQL para Crear Tablas</h1>
+
+    <pre>
+CREATE DATABASE CPP_SistemaGestion;
+
+USE CPP_SistemaGestion;
+
+CREATE TABLE Usuarios (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Rol NVARCHAR(50) NOT NULL,
+    Nombre NVARCHAR(100) NOT NULL,
+    Correo NVARCHAR(100) NOT NULL UNIQUE,
+    Telefono NVARCHAR(15) NOT NULL,
+    Contrasena NVARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Puercos (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Raza NVARCHAR(50) NOT NULL,
+    Edad INT NOT NULL,
+    Peso DECIMAL(10, 2) NOT NULL,
+    Estado NVARCHAR(20) NOT NULL
+);
+
+CREATE TABLE Citas (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    UsuarioId INT NOT NULL,
+    PuercoId INT NOT NULL,
+    Fecha DATETIME NOT NULL,
+    Lugar NVARCHAR(100) NOT NULL,
+    FOREIGN KEY (UsuarioId) REFERENCES Usuarios(Id),
+    FOREIGN KEY (PuercoId) REFERENCES Puercos(Id)
+);
+
+CREATE TABLE HistorialMedico (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    PuercoId INT NOT NULL,
+    Fecha DATETIME NOT NULL,
+    Descripcion NVARCHAR(255) NOT NULL,
+    FOREIGN KEY (PuercoId) REFERENCES Puercos(Id)
+);
+
+  <h1>Agregar Registros a la Base de Datos CPP_SistemaGestion</h1>
+
+  <pre>
+INSERT INTO Usuarios (Rol, Nombre, Correo, Telefono, Contrasena) VALUES
+('Administrador', 'Juan Pérez', 'juan.perez@example.com', '123456789', 'contrasena123'),
+('Veterinario', 'María López', 'maria.lopez@example.com', '987654321', 'contrasena456');
+
+INSERT INTO Puercos (Raza, Edad, Peso, Estado) VALUES
+('Yorkshire', 2, 150.00, 'Saludable'),
+('Berkshire', 3, 180.50, 'Saludable');
+
+INSERT INTO Citas (UsuarioId, PuercoId, Fecha, Lugar) VALUES
+(1, 1, '2024-10-21 10:00:00', 'Clinica Veterinaria A'),
+(2, 2, '2024-10-22 11:00:00', 'Clinica Veterinaria B');
+
+INSERT INTO HistorialMedico (PuercoId, Fecha, Descripcion) VALUES
+(1, '2024-10-15', 'Chequeo general, todo en orden.'),
+(2, '2024-10-18', 'Vacunación contra enfermedad X.');
+
 </body>
 </html>
