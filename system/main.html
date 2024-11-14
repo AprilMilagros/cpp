@@ -1,104 +1,55 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro y Citas</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-        label {
-            display: block;
-            margin: 10px 0 5px;
-            color: #555;
-        }
-        input, select, button {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0 20px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
-            }
-        }
-    </style>
+    <title>CRUD</title>
 </head>
-
-<ul>
-    <li><a href="./../index.html">[Principal]</a></li>
-</ul>
 <body>
 
-    <div class="container">
-        <h2>Registro de Usuario</h2>
-        <form action="/registrar_usuario" method="post">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
-            
-            <label for="correo">Correo:</label>
-            <input type="email" id="correo" name="correo" required>
-            
-            <label for="telefono">Teléfono:</label>
-            <input type="tel" id="telefono" name="telefono" required>
-            
-            <label for="contrasena">Contraseña:</label>
-            <input type="password" id="contrasena" name="contrasena" required>
-            
-            <button type="submit">Registrar</button>
-        </form>
-    </div>
+    <ul>
+        <li><a href="./../Subsistemas/ventas.html">[Ventas]</a></li>
+    </ul>
 
-    <div class="container">
-        <h2>Crear Cita</h2>
-        <form action="/crear_cita" method="post">
-            <label for="usuario">Seleccionar Usuario:</label>
-            <select id="usuario" name="usuarioId" required>
-                <!-- Opciones de usuarios -->
-            </select>
-            
-            <label for="puerco">Seleccionar Puerco:</label>
-            <select id="puerco" name="puercoId" required>
-                <!-- Opciones de puercos -->
-            </select>
-            
-            <label for="fecha">Fecha:</label>
-            <input type="datetime-local" id="fecha" name="fecha" required>
-            
-            <label for="lugar">Lugar:</label>
-            <input type="text" id="lugar" name="lugar" required>
-            
-            <button type="submit">Crear Cita</button>
-        </form>
-    </div>
 
+    <h1>CRUD de Ventas</h1>
+        <p>Se realizo el CRUD para el subsistema de Ventas en el cual se muestra el formulario que se implemento para registrar <strong>Usuarios</strong>.</p>
+
+
+        <h2>Usuarios</h2>
+            <p>Se muestran los registros que existen los cuales seran manipulados para apreciar su funcionamiento, donde se aplica el:</p>
+                <li>Crear</li>
+                <li>Leer</li>
+                <li>Actualizar</li>
+                <li>Eliminar</li>
+                <img src="../imagenes/imagen1.png" alt="Registros de Usuarios" width="900">
+
+        
+        <h2>Crear Usuario</h2>
+            <p>Crear el usuario consta en llenar ciertos campos como:</p>
+                <li>Nombre</li>
+                <li>Correo</li>
+                <li>Rol</li>
+                <li>Telefono</li>
+                <li>Contraseña</li>
+            <p>Esto para saber quien fue el que maniplo el sistema.</p>
+                <img src="../imagenes/imagen2.png" alt="Creacion de Usuarios" width="900">
+
+        
+        <h2>Editar Usuario</h2>
+            <p>El editar o ectualizar a un usuario permite tener informacion mas actual por ejemplo puede cambiar de correo o de rol, lo va a poder 
+                hacer solo el y el que esta autorizado para manipular la informacion personal de los usuarios, ya que solo va a permitir el cambio con la 
+                contraseña que genero el usuario.</p>
+                <img src="../imagenes/imagen3.png" alt="Editar Usuarios" width="900">
+      
+
+        <h2>Eliminar Usuario</h2>
+                <p>Eliminar un usuario ayuda en limpiar nuestro almacenamiento de registros de usuario, ya que un factor puede ser que ya no trabaje entonces es 
+                    eliminar su registro a dejarlo</p>
+                    <img src="../imagenes/imagen4.png" alt="Eliminar Usuarios" width="900">
+
+
+        <h2>Cambios</h2>
+            <p>Visualiza todos los cambios que se realizaron en funcion al CRUD implementado para usuarios del subsistema Inventario.</p>
 </body>
-</html>
+</html>     
