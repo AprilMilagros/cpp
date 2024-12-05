@@ -49,19 +49,29 @@
 
 <p>Esta estructura permite el rastreo de las transacciones, la asignación de responsabilidades a los usuarios y el mantenimiento de un registro histórico de los animales y sus atenciones médicas. En conjunto, esta arquitectura de base de datos soporta de manera eficiente las funcionalidades requeridas por el subsistema.</p>
 
-<h1>Normalización de la Base de Datos</h1>
-<p>La base de datos ha sido diseñada siguiendo las primeras tres formas normales (1NF, 2NF, 3NF) para garantizar la organización y consistencia de los datos.</p>
-
 <h2>1NF (Primera Forma Normal)</h2>
-<p>En esta forma, cada tabla tiene una clave primaria única y todas las entradas son atómicas. Esto significa que cada campo contiene un solo valor, evitando así la repetición de grupos de datos. Al cumplir con 1NF, se asegura que los datos sean fácilmente accesibles y manipulables, lo que mejora la integridad de la base de datos.</p>
+    <h3>Identificación Única:</h3>
+    <p>Cada tabla tiene una clave primaria única. Esto asegura que cada registro sea identificable de manera particular.</p>
+    <h3>Unicidad de Valor:</h3>
+    <p>Cada campo contiene un solo valor. No se permiten listas o conjuntos de valores en las columnas.</p>
+    <h3>Ejemplo:</h3>
+    <p>En la tabla <strong>Usuarios</strong>, cada usuario tiene un único <strong>Id</strong>, y no se permiten listas de valores en las columnas como <strong>Rol</strong> o <strong>Nombre</strong>.</p>
 
-<h2>2NF (Segunda Forma Normal)</h2>
-<p>La 2NF se logra eliminando la dependencia parcial de los atributos. Esto garantiza que todos los atributos de una tabla dependen completamente de la clave primaria. Al hacerlo, se minimizan las redundancias y se evita la inconsistencia de datos, ya que cada atributo está relacionado de manera directa y única con la clave primaria.</p>
+    <h2>2NF (Segunda Forma Normal)</h2>
+    <h3>Dependencia Completa:</h3>
+    <p>Se ha eliminado la dependencia parcial de los atributos. Todos los atributos dependen completamente de la clave primaria.</p>
+    <h3>Claves Compuestas:</h3>
+    <p>Si una clave primaria es compuesta, todos los atributos no clave dependen de la totalidad de esta clave.</p>
+    <h3>Ejemplo:</h3>
+    <p>En la tabla <strong>Citas</strong>, todos los atributos, como <strong>Fecha</strong> y <strong>Lugar</strong>, dependen completamente de la combinación de <strong>UsuarioId</strong> y <strong>PuercoId</strong>.</p>
 
-<h2>3NF (Tercera Forma Normal)</h2>
-<p>La 3NF se establece al asegurar que no hay dependencias transitivas. En esta forma, todos los atributos son dependientes directamente de la clave primaria. Esto significa que no se permite que un atributo dependa de otro atributo que no sea la clave primaria, lo que reduce aún más la redundancia y mejora la integridad referencial de la base de datos.</p>
-
-<p>En conjunto, estas tres formas normales proporcionan un marco sólido para la organización y consistencia de los datos en la base de datos relacional, facilitando su mantenimiento y evolución a lo largo del tiempo.</p>
+    <h2>3NF (Tercera Forma Normal)</h2>
+    <h3>Sin Dependencias Transitivas:</h3>
+    <p>Todos los atributos dependen directamente de la clave primaria. No existen atributos no clave que dependan de otros atributos no clave.</p>
+    <h3>Integridad de Datos:</h3>
+    <p>Al eliminar estas dependencias, se evita la duplicación de datos y se mejora la integridad de la base de datos.</p>
+    <h3>Ejemplo:</h3>
+    <p>En la tabla <strong>HistorialMedico</strong>, todos los atributos como <strong>Fecha</strong> y <strong>Descripcion</strong> dependen directamente de <strong>PuercoId</strong>, sin depender de otros atributos.</p>
     <h1>Código SQL para Crear Tablas</h1>
 
     <pre>
